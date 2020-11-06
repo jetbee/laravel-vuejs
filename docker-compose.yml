@@ -8,5 +8,6 @@ services:
     volumes:
       - ./app:/app
       - ./var_lib_mysql:/var/lib/mysql
+      - ./etc_apache2_sites-enabled/001-todo-spa.conf:/etc/apache2/sites-enabled/001-todo-spa.conf:ro
     ports:
       - "8080:80"
