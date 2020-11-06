@@ -9,7 +9,7 @@
                     </div>
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Content</label>
-                        <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content">
+                        <textarea class="col-sm-9 form-control" id="content" v-model="task.content"></textarea>
                     </div>
                     <div class="form-group row">
                         <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>

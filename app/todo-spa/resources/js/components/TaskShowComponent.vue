@@ -4,24 +4,20 @@
             <div class="col-sm-6">
                 <form>
                     <div class="form-group row border-bottom">
-                        <label for="id" class="col-sm-3 col-form-label">ID</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id"
-                               v-model="task.id">
+                        <div class="col-sm-3">ID</div>
+                        <div class="col-sm-9" id="id">{{ task.id }}</div>
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="title" class="col-sm-3 col-form-label">Title</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="title"
-                               v-model="task.title">
+                        <div class="col-sm-3">Title</div>
+                        <div class="col-sm-9" id="title">{{ task.title }}</div>
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="content" class="col-sm-3 col-form-label">Content</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="content"
-                               v-model="task.content">
+                        <div class="col-sm-3">Content</div>
+                        <div class="col-sm-9" id="content"><span v-html="task.content"></span></div>
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
-                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="person-in-charge"
-                               v-model="task.person_in_charge">
+                        <div class="col-sm-3">Person In Charge</div>
+                        <div class="col-sm-9" id="person-in-charge">{{ task.person_in_charge }}</div>
                     </div>
                 </form>
             </div>
