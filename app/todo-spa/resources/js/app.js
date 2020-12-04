@@ -1,5 +1,7 @@
 import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
+import LoginComponent from "./components/LoginComponent";
+import AboutComponent from "./components/AboutComponent";
 import TaskListComponent from "./components/TaskListComponent";
 import TaskCreateComponent from "./components/TaskCreateComponent";
 import TaskShowComponent from "./components/TaskShowComponent";
@@ -20,29 +22,69 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
+            path: "/login",
+            name: "login",
+            component: LoginComponent,
+            meta: { guestOnly: true }
+        },
+        {
+            path: "/about",
+            name: "about",
+            component: AboutComponent,
+            meta: { authOnly: true }
+        },
+        {
             path: '/tasks',
             name: 'task.list',
-            component: TaskListComponent
+            component: TaskListComponent,
+            meta: { authOnly: true }
         },
         {
             path: '/tasks/create',
             name: 'task.create',
-            component: TaskCreateComponent
+            component: TaskCreateComponent,
+            meta: { authOnly: true }
         },
         {
             path: '/tasks/:taskId',
             name: 'task.show',
             component: TaskShowComponent,
-            props: true
+            props: true,
+            meta: { authOnly: true }
         },
         {
             path: '/tasks/:taskId/edit',
             name: 'task.edit',
             component: TaskEditComponent,
-            props: true
+            props: true,
+            meta: { authOnly: true }
         },
     ]
 });
+
+function isLoggedIn() {
+    return localStorage.getItem("auth");
+}
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.authOnly)) {
+        if (!isLoggedIn()) {
+            next("/login");
+        } else {
+            next();
+        }
+    } else if (to.matched.some(record => record.meta.guestOnly)) {
+        if (isLoggedIn()) {
+            next("/about");
+        } else {
+            next();
+        }
+    } else {
+        next();
+    }
+});
+
+export default router;
 
 /**
  * The following block of code may be used to automatically register your

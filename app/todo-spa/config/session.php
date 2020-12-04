@@ -179,6 +179,7 @@ return [
     |
     */
 
+    // 'http_only' => false,
     'http_only' => true,
 
     /*
