@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 
 class TaskController extends Controller
 {
@@ -12,7 +13,7 @@ class TaskController extends Controller
         return Task::all();
     }
 
-    public function store(Request $request)
+    public function store(TaskRequest $request)
     {
         return Task::create($request->all());
     }
@@ -22,17 +23,15 @@ class TaskController extends Controller
         return $task;
     }
 
-    public function update(Request $request, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $task->update($request->all());
-
         return $task;
     }
 
     public function destroy(Task $task)
     {
         $task->delete();
-
         return $task;
     }
 }

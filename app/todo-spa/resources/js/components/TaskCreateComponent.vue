@@ -10,6 +10,7 @@
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Content</label>
                         <textarea class="col-sm-9 form-control" id="content" v-model="task.content"></textarea>
+                        <div class="col-sm-9 offset-sm-3 text-danger">{{ error.content }}</div>
                     </div>
                     <div class="form-group row">
                         <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
@@ -26,11 +27,16 @@
     export default {
         data: function () {
             return {
-                task: {}
+                task: {},
+                error: {}
             }
         },
         methods: {
             submit() {
+                if(this.task.content.match(/<embed/)){
+                    this.error = {'content':'embed タグは使えません'};
+                    return false;
+                }
                 axios.post('/api/tasks', this.task)
                     .then((res) => {
                         this.$router.push({name: 'task.list'});
