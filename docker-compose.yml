@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: "mattrayner/lamp:latest-1804"
+    image: "mattrayner/lamp:0.8.0-1804-php7"
     volumes:
       - ./app:/app
       - ./var_lib_mysql:/var/lib/mysql
