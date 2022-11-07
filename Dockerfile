@@ -1,4 +1,4 @@
-FROM mattrayner/lamp:latest-1804
+FROM mattrayner/lamp:0.8.0-1804-php7
 
 RUN apt-get -y update
 RUN apt-get install -y \
