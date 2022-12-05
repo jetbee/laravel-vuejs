@@ -24,9 +24,13 @@ Route::middleware('auth:sanctum')->delete('/tasks/{task}','TaskController@destro
 // Route::put('/tasks/{task}', 'TaskController@update');
 // Route::delete('/tasks/{task}', 'TaskController@destroy');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/user','UserController@index');
+Route::middleware('auth:sanctum')->put('/user/{user}','UserController@update');
+// Route::middleware('auth:sanctum')->get('/user','UserController@index');
+// Route::put('/user/{user}','UserController@update');
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::post('/login', 'LoginController@login');
 Route::post('/logout', 'LoginController@logout');
