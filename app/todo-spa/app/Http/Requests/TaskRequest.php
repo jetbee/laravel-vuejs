@@ -12,16 +12,16 @@ class TaskRequest extends FormRequest
 
     public function rules(){
         return [
-            'title'   => ['required','max:20'],
-            'content' => ['required','max:100',
-                function ($attribute, $value, $fail){
-                    if(preg_match('/^([ぁ-んァ-ヶーa-zA-Z0-9一-龠０-９、。\n\r]|<br>|<b>|<\/b>)+$/u',$value)){
-                        return true;
-                    }
-                    return $fail('The data format is incorrect.');
+            'title'   => ['required', 'max:20'],
+            'content' => ['required', 'max:100',
+                function($attribute, $value, $fail){
+                   if(preg_match('/^([ぁ-んァ-ヶーa-zA-Z0-9一-龠０-９、。]|<br>|<b>|<\/b>)+$/', $value)){
+                       return true;
+                   }
+                   return $fail('The data format is incorrent.');
                 }
             ],
-            'person_in_charge' => ['required','max:20'],
+            'person_in_charge'   => ['required', 'max:20'],
         ];
     }
 

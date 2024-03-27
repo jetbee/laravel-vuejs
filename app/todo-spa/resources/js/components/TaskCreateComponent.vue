@@ -33,10 +33,6 @@
         },
         methods: {
             submit() {
-                if(this.task.content.match(/<embed/)){
-                    this.error = {'content':'embed タグは使えません'};
-                    return false;
-                }
                 axios.post('/api/tasks', this.task)
                     .then((res) => {
                         this.$router.push({name: 'task.list'});

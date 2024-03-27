@@ -14,6 +14,7 @@
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Content</label>
                         <textarea class="col-sm-9 form-control" id="content" v-model="task.content"></textarea>
+                        <div class="col-sm-9 offset-sm-3 text-danger">{{ error.content }}</div>
                     </div>
                     <div class="form-group row">
                         <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
@@ -33,7 +34,8 @@
         },
         data: function () {
             return {
-                task: {}
+                task: {},
+                error: {}
             }
         },
         methods: {
@@ -44,10 +46,15 @@
                     });
             },
             submit() {
-                axios.put('/api/tasks/' + this.taskId, this.task)
-                    .then((res) => {
-                        this.$router.push({name: 'task.list'})
-                    });
+                if(this.task.content.match(/^([ぁ-んァ-ヶーa-zA-Z0-9一-龠０-９、。]|<br>|<b>|<\/b>)+$/)){
+                    axios.put('/api/tasks/' + this.taskId, this.task)
+                        .then((res) => {
+                            this.$router.push({name: 'task.list'})
+                        });
+                        return true;
+                }
+                this.error = {'content':'使えない文字が含まれています'};
+                return false;
             }
         },
         mounted() {

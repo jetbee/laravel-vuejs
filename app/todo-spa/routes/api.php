@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/tasks/{task}','TaskController@show');
 Route::middleware('auth:sanctum')->put('/tasks/{task}','TaskController@update');
 Route::middleware('auth:sanctum')->delete('/tasks/{task}','TaskController@destroy');
 // Route::get('/tasks', 'TaskController@index');
-// Route::post('/tasks', 'TaskController@store');
+Route::post('/tasks', 'TaskController@store');
 // Route::get('/tasks/{task}', 'TaskController@show');
 // Route::put('/tasks/{task}', 'TaskController@update');
 // Route::delete('/tasks/{task}', 'TaskController@destroy');

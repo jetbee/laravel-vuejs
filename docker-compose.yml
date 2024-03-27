@@ -9,5 +9,7 @@ services:
       - ./app:/app
       - ./var_lib_mysql:/var/lib/mysql
       - ./etc_apache2_sites-enabled/001-todo-spa.conf:/etc/apache2/sites-enabled/001-todo-spa.conf:ro
+      - ./etc_apache2_sites-enabled/fullchain.crt:/etc/apache2/sites-enabled/fullchain.crt:ro
+      - ./etc_apache2_sites-enabled/privkey.key:/etc/apache2/sites-enabled/privkey.key:ro
     ports:
       - "8080:80"
